@@ -1,0 +1,41 @@
+{
+  "name": "@jinshuxuan/dsh-context-budget",
+  "version": "0.1.0",
+  "description": "Per-step context ledger for DeepSeek Harness with opt-in gates: lean tool table, long-tail externalization, duplicate-read pointers.",
+  "type": "module",
+  "license": "MIT",
+  "author": "JinShuXuan",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JinShuXuan/dsh-context-budget.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JinShuXuan/dsh-context-budget/issues"
+  },
+  "homepage": "https://github.com/JinShuXuan/dsh-context-budget#readme",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "context",
+    "token-budget",
+    "toolset"
+  ],
+  "exports": {
+    ".": "./index.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "read-many.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" }
+  }
+}

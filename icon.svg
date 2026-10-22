@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Context budget meter">
+  <rect width="64" height="64" rx="12" fill="#1b2a41"/>
+  <path d="M12 44a20 20 0 0 1 40 0" fill="none" stroke="#3d5a80" stroke-width="6" stroke-linecap="round"/>
+  <path d="M12 44a20 20 0 0 1 20-20" fill="none" stroke="#7ee0c6" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="32" cy="44" r="3.5" fill="#e8f1f2"/>
+  <path d="M32 44l11-13" stroke="#e8f1f2" stroke-width="3" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Context Budget",
+    "description": "Measures what every model step actually re-sends, and applies opt-in gates: lean toolset, long-tail result externalization, duplicate-read pointers."
+  }
+}

@@ -1,0 +1,50 @@
+# dsh-context-budget —— 插入一行 Host 插件。
+#
+# 发布默认：只开 L0 观测（0 token、无副作用），其余闸门默认关闭。
+# 想开哪一闸就打开哪一段——每段都写清了代价。
+- insert:
+    - id: context-budget
+      name: '@jinshuxuan/dsh-context-budget'
+      config:
+        enabled: true
+        budget:
+          warnAtTokens: 150000
+
+        # G2 长尾外置：结果 ≥ thresholdChars 时落盘，上下文只留头尾 + 指针。
+        # 实测（本机 3,752 条结果）：8K 阈值覆盖内容 18.3%，35K 只覆盖 8.1%。
+        # 注意：行数 ≤ keepHeadLines + keepTailLines 时插件会跳过（省不了就不动）。
+        tail:
+          enabled: false
+          thresholdChars: 8000
+          keepHeadLines: 20
+          keepTailLines: 10
+          dir: .context-budget/spill
+
+        # G3 重复读回指针：同 path + offset + limit 且 mtime 未变时不重发内容。
+        dedup:
+          enabled: false
+          tools:
+            - read
+            - ops_inspect_local_file
+
+        # G1 工具档：会话开始时一次性收紧工具表，之后会话内不变（保护前缀缓存）。
+        # 黑名单按"实际可见集"过滤，写不存在的工具名不会报错，也不会误伤。
+        # 被误挡时在 GUI 里发 /budget-full 还原本会话，无需重启。
+        toolset:
+          enabled: false
+          defaultMode: full
+          modes:
+            lean:
+              denyPrefixes: []
+              deny: []
+          byPath: []
+
+        # 诊断日志：默认关闭。true → 临时目录；字符串 → 指定路径。
+        # 日常看命中次数不需要它：/budget 直接报 tailHits / dedupHits。
+        # debug: true
+
+        readMany:
+          enabled: false
+          defaultLimit: 400
+          maxCharsPerFile: 20000
+          maxTotalChars: 60000
