@@ -1,6 +1,6 @@
 {
   "name": "@jinshuxuan/dsh-context-budget",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Per-step context ledger for DeepSeek Harness with opt-in gates: lean tool table, long-tail externalization, duplicate-read pointers.",
   "type": "module",
   "license": "MIT",
