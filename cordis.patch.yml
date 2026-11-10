@@ -9,6 +9,8 @@
         enabled: true
         budget:
           warnAtTokens: 150000
+          # 新增（键不在 patch 里也生效，默认值 150000）：增速预测的窗口阈值。
+          # windowTokens: 150000
 
         # G2 长尾外置：结果 ≥ thresholdChars 时落盘，上下文只留头尾 + 指针。
         # 实测（本机 3,752 条结果）：8K 阈值覆盖内容 18.3%，35K 只覆盖 8.1%。
@@ -19,6 +21,9 @@
           keepHeadLines: 20
           keepTailLines: 10
           dir: .context-budget/spill
+          # 新增（默认值如下，只在 /budget spill clean 时使用，与外置决策无关）：
+          # retentionDays: 7
+          # maxBytes: 209715200
 
         # G3 重复读回指针：同 path + offset + limit 且 mtime 未变时不重发内容。
         dedup:
